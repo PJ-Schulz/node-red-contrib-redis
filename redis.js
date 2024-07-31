@@ -9,15 +9,35 @@ function RedisConfig(n) {
     RED.nodes.createNode(this, n);
     this.name = n.name;
     this.cluster = n.cluster;
+    console.log("---")
+    console.log("Hello")
+    // console.log(this.optionsType)  // undefinded
+    // console.log(this.optionsType === "")  // false
+    // console.log("-")
+    console.log(n.options)  // string MY_ENV
+    console.log(n.optionsType)  // string MY_ENV
+    console.log("   <<<")
+    console.log(typeof n.options)  // env
+    console.log(typeof n.optionsType)  // type string
+    console.log("   <<<")
     if (this.optionsType === "") {
       this.options = n.options;
     } else {
       RED.util.evaluateNodeProperty(n.options, n.optionsType,this,undefined,(err,value) => {
-           if(!err) {
+          console.log("***")
+          console.log(err)
+          console.log(value)
+          console.log(typeof value)
+          if(!err) {
             this.options = value
           }
       });
-    }
+      }
+    console.log("-")
+    console.log(this.options)
+    console.log(typeof this.options)
+    console.log("World")
+    console.log("---")
   }
   RED.nodes.registerType("redis-config", RedisConfig);
 
